@@ -1,0 +1,17 @@
+{
+  "qewd_up": true,
+  "qewd": {
+    "port": 8080,
+    "poolSize": "2",
+    "managementPassword": "keepThisSecret!",
+    "database": {
+      "type": "dbx",
+      "params": {
+        "database": "LMDB",
+        "db_library": "liblmdb.so",
+        "env_dir": "/opt/lmdb",
+        "key_type": "m"
+      }
+    }
+  }
+}
