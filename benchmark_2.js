@@ -3,8 +3,7 @@ var mglobal = require('mg-dbx-bdb').mglobal;
 var db = new dbxbdb();
 
 var lmdb = 1;
-var max = process.argv[2] || 200000;
-
+var max = process.argv[2] || 100000;
 
 if (process.platform == 'win32') {
    if (lmdb == 1)
@@ -14,7 +13,7 @@ if (process.platform == 'win32') {
 }
 else {
    if (lmdb == 1)
-      var open = db.open({type: "LMDB", db_library: "liblmdb.so", env_dir: "/opt/lmdb", key_type: "m"});
+      var open = db.open({type: "LMDB", db_library: "liblmdb.so", env_dir: "/opt/lmdb", key_type: "mumps"});
    else
       var open = db.open({type: "BDB", db_library: "/usr/local/BerkeleyDB.18.1/lib/libdb.so", db_file: "/opt/bdb/my_bdb_database.db", key_type: "mumps"});
 }
@@ -27,9 +26,10 @@ var d1 = new Date();
 var d1_ms = d1.getTime()
 console.log("d1: " + d1.toISOString());
 var n = 0;
+var value;
 for (n = 1; n <= max; n ++) {
-   global.set(n, "Chris Munt");
-   //console.log(n + " = " + "Chris Munt");
+   value = global.get(n);
+   //console.log(n + " = " + value);
 }
 
 var d2 = new Date();
